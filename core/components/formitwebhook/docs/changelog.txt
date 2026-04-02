@@ -1,0 +1,10 @@
+Changelog for FormIt Webhook
+
+FormIt Webhook 1.0.0-pl
+==============
+- Initial release
+- Send form submissions to external URLs via HTTP
+- Support for GET, POST, PUT, PATCH, DELETE methods
+- Support for URL-encoded, multipart form-data, and JSON formats
+- Bearer token authentication
+- Field filtering and static data injection
