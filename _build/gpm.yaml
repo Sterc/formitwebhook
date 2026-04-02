@@ -1,10 +1,11 @@
-name: formit-webhook
+name: formitwebhook
 version: 1.0.0-pl
-lowCaseName: formit-webhook
+lowCaseName: formitwebhook
 namespace: formit-webhook
 description: FormIt Webhook - send your form data to any URL
 
 systemSettings:
+  - key: core_path
   - key: webhook_bearer_token
     type: textfield
     area: default
@@ -20,12 +21,12 @@ systemSettings:
     area: default
     value:
 snippets:
-  - name: formit-webhook.snippet
+  - name: FormitWebhook
     file: formitwebhook.snippet.php
 build:
   readme: README.md
-  license: license.md
-  changelog: changelog.md
+  license: core/components/formitwebhook/docs/license.txt
+  changelog: core/components/formitwebhook/docs/changelog.txt
   requires:
     php: '>=7.3'
     modx: '>=2.8'

@@ -33,9 +33,9 @@ Properties are set as scriptProperties on the FormIt call. They override the cor
 | `url` | The URL to send data to | System setting |
 | `token` | Bearer token for authentication | System setting |
 | `method` | HTTP method: `GET`, `POST`, `PUT`, `PATCH`, `DELETE` | `POST` |
-| `format` | Data format: `url`, `form`, or `json` | `json` |
-| `fields` | Comma-separated list of form fields to include. Empty = all fields | _(all)_ |
-| `vars` | Static key=value pairs, comma-separated | System setting |
+| `webhookFormat` | Data format: `url`, `form`, or `json` | `json` |
+| `webhookFields` | Comma-separated list of form fields to include. Empty = all fields | _(all)_ |
+| `webhookVars` | Static key=value pairs, comma-separated | System setting |
 
 ### Data Formats
 
@@ -70,8 +70,8 @@ For `GET` requests, data is always appended as query string parameters regardles
     &redirectTo=`[[++page_thanks]]`
     &url=`https://api.example.com/leads`
     &token=`your-bearer-token`
-    &fields=`name,email,phone`
-    &vars=`source=website,form_id=contact`
+    &webhookFields=`name,email,phone`
+    &webhookVars=`source=website,form_id=contact`
 ]]
 ```
 
@@ -82,7 +82,7 @@ For `GET` requests, data is always appended as query string parameters regardles
     &hooks=`FormitWebhook`
     &validate=`email:email:required`
     &url=`https://api.example.com/submit`
-    &format=`url`
+    &webhookFormat=`url`
 ]]
 ```
 
@@ -93,7 +93,7 @@ For `GET` requests, data is always appended as query string parameters regardles
     &hooks=`FormitWebhook`
     &url=`https://api.example.com/notify`
     &method=`GET`
-    &fields=`email`
+    &webhookFields=`email`
 ]]
 ```
 

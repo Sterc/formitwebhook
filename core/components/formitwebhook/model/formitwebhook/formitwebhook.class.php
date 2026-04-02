@@ -35,9 +35,9 @@ class FormitWebhook
         $url = $this->getOption('url', $scriptProperties, 'webhook_url');
         $token = $this->getOption('token', $scriptProperties, 'webhook_bearer_token');
         $method = strtoupper($this->getOption('method', $scriptProperties, 'webhook_method', 'POST'));
-        $format = strtolower($scriptProperties['format'] ?? 'json');
-        $fields = $scriptProperties['fields'] ?? '';
-        $vars = $this->getOption('vars', $scriptProperties, 'webhook_static_data');
+        $format = strtolower($scriptProperties['webhookFormat'] ?? 'json');
+        $fields = $scriptProperties['webhookFields'] ?? '';
+        $vars = $this->getOption('webhookVars', $scriptProperties, 'webhook_static_data');
 
         // Validate URL
         if (empty($url)) {
@@ -75,7 +75,7 @@ class FormitWebhook
         $mergedVars = array_merge($staticData, $scriptVars);
 
         // Only apply system setting vars if vars scriptProperty was also provided (avoid double-applying)
-        if (!empty($scriptProperties['vars'])) {
+        if (!empty($scriptProperties['webhookVars'])) {
             $data = array_merge($data, $mergedVars);
         } else {
             $data = array_merge($data, $staticData);

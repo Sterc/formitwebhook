@@ -23,9 +23,9 @@ Properties
 * url: The URL to send data to. Overrides the webhook_url system setting.
 * token: Bearer token for authentication. Overrides the webhook_bearer_token system setting.
 * method: HTTP method (GET, POST, PUT, PATCH, DELETE). Default: POST.
-* format: Data format - url, form, or json. Default: json.
-* fields: Comma-separated list of form fields to include. Empty includes all fields.
-* vars: Static key=value pairs to include, comma-separated. Example: source=website,form_id=contact
+* webhookFormat: Data format - url, form, or json. Default: json.
+* webhookFields: Comma-separated list of form fields to include. Empty includes all fields.
+* webhookVars: Static key=value pairs to include, comma-separated. Example: source=website,form_id=contact
 
 Requirements
 
