@@ -17,6 +17,8 @@ $_lang['setting_formit-webhook.webhook_method']            = 'HTTP Method';
 $_lang['setting_formit-webhook.webhook_method_desc']       = 'The default HTTP method (GET, POST, PUT, PATCH, DELETE). Default: POST.';
 $_lang['setting_formit-webhook.webhook_static_data']       = 'Static Data';
 $_lang['setting_formit-webhook.webhook_static_data_desc']  = 'Default static key=value pairs to include, comma-separated. Example: source=website,form_id=contact';
+$_lang['setting_formit-webhook.field_mapping']             = 'Field Mapping';
+$_lang['setting_formit-webhook.field_mapping_desc']        = 'Re-map form field names before sending, comma-separated original=target pairs. Useful for Formalicious generic names. Example: field_1=email,field_2=name';
 
 // Error messages
 $_lang['formitwebhook.error.no_url']         = 'Webhook failed: No URL was provided.';

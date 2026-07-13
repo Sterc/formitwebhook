@@ -20,6 +20,10 @@ systemSettings:
     type: textfield
     area: default
     value:
+  - key: field_mapping
+    type: textfield
+    area: default
+    value:
 snippets:
   - name: FormitWebhook
     file: formitwebhook.snippet.php
