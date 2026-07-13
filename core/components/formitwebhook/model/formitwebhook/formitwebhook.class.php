@@ -66,7 +66,7 @@ class FormitWebhook
         // Re-map generic field names (e.g. Formalicious field_1) to meaningful
         // names before filtering, so webhookFields and the endpoint see the
         // mapped names.
-        $fieldMap = $this->parseVars($this->getOption('webhookFieldMapping', $scriptProperties, 'field_mapping'));
+        $fieldMap = $this->parseVars($this->getOption('webhookFieldMapping', $scriptProperties, 'webhook_field_mapping'));
         $data = $this->applyFieldMapping($data, $fieldMap);
 
         // Filter fields if specified

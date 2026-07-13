@@ -42,7 +42,7 @@ class FakeHook
 $modx = new modX();
 $modx->options = [
     'formit-webhook.webhook_url'   => 'https://example.com/hook',
-    'formit-webhook.field_mapping' => 'field_1=email,field_2=name',
+    'formit-webhook.webhook_field_mapping' => 'field_1=email,field_2=name',
 ];
 
 // Mapping applied via system setting; unmapped field_3 passes through.

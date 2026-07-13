@@ -12,7 +12,7 @@
 
 - PHP `>=7.3` — do NOT use typed properties or arrow functions (7.4+). `??`, scalar type hints, and return type declarations are fine.
 - MODX `>=2.8`, FormIt `>=3.2`.
-- System setting namespace prefix is `formit-webhook.`; existing setting keys use a `webhook_` prefix, but this new key is `field_mapping` (no prefix) by explicit product decision.
+- System setting namespace prefix is `formit-webhook.`; the new key is `webhook_field_mapping`, matching the `webhook_` prefix used by the other setting keys.
 - ScriptProperties are camelCase (`webhookFieldMapping`).
 - Mapping string grammar is identical to `webhook_static_data`: comma-separated `key=value` pairs. Reuse the existing `parseVars()` helper — do NOT write a new parser.
 - The `tests/` directory is NOT part of the built transport package (`_build/gpm.yaml` enumerates what ships), so test files may live at repo root safely.
@@ -226,7 +226,7 @@ class FakeHook
 $modx = new modX();
 $modx->options = [
     'formit-webhook.webhook_url'   => 'https://example.com/hook',
-    'formit-webhook.field_mapping' => 'field_1=email,field_2=name',
+    'formit-webhook.webhook_field_mapping' => 'field_1=email,field_2=name',
 ];
 
 // Mapping applied via system setting; unmapped field_3 passes through.
@@ -282,7 +282,7 @@ Replace it with:
         // Re-map generic field names (e.g. Formalicious field_1) to meaningful
         // names before filtering, so webhookFields and the endpoint see the
         // mapped names.
-        $fieldMap = $this->parseVars($this->getOption('webhookFieldMapping', $scriptProperties, 'field_mapping'));
+        $fieldMap = $this->parseVars($this->getOption('webhookFieldMapping', $scriptProperties, 'webhook_field_mapping'));
         $data = $this->applyFieldMapping($data, $fieldMap);
 
         // Filter fields if specified
@@ -328,7 +328,7 @@ git commit -m "feat: apply field mapping in submitForm before filtering"
 In `_build/gpm.yaml`, the `systemSettings:` list currently ends with the `webhook_static_data` block. Add the new entry immediately after it (after line 22), keeping the same 2-space indentation:
 
 ```yaml
-  - key: field_mapping
+  - key: webhook_field_mapping
     type: textfield
     area: default
     value:
@@ -339,8 +339,8 @@ In `_build/gpm.yaml`, the `systemSettings:` list currently ends with the `webhoo
 In `core/components/formitwebhook/lexicon/en/default.inc.php`, after the `webhook_static_data_desc` line (line 19), add:
 
 ```php
-$_lang['setting_formit-webhook.field_mapping']            = 'Field Mapping';
-$_lang['setting_formit-webhook.field_mapping_desc']       = 'Re-map form field names before sending, comma-separated original=target pairs. Useful for Formalicious generic names. Example: field_1=email,field_2=name';
+$_lang['setting_formit-webhook.webhook_field_mapping']            = 'Field Mapping';
+$_lang['setting_formit-webhook.webhook_field_mapping_desc']       = 'Re-map form field names before sending, comma-separated original=target pairs. Useful for Formalicious generic names. Example: field_1=email,field_2=name';
 ```
 
 - [ ] **Step 3: Add Dutch lexicon entries**
@@ -352,8 +352,8 @@ Run: `cat core/components/formitwebhook/lexicon/nl/default.inc.php`
 Then add the two matching keys alongside the other `setting_formit-webhook.*` entries in that file:
 
 ```php
-$_lang['setting_formit-webhook.field_mapping']            = 'Veldtoewijzing';
-$_lang['setting_formit-webhook.field_mapping_desc']       = 'Hernoem formuliervelden voor verzending, komma-gescheiden original=target paren. Handig voor generieke Formalicious-namen. Voorbeeld: field_1=email,field_2=name';
+$_lang['setting_formit-webhook.webhook_field_mapping']            = 'Veldtoewijzing';
+$_lang['setting_formit-webhook.webhook_field_mapping_desc']       = 'Hernoem formuliervelden voor verzending, komma-gescheiden original=target paren. Handig voor generieke Formalicious-namen. Voorbeeld: field_1=email,field_2=name';
 ```
 
 If the Dutch file has no `setting_formit-webhook.*` entries yet, place these after the `$_lang['formitwebhook']` line.
@@ -363,7 +363,7 @@ If the Dutch file has no `setting_formit-webhook.*` entries yet, place these aft
 In `README.md`, add a row to the System Settings table (after the `webhook_static_data` row):
 
 ```markdown
-| `formit-webhook.field_mapping` | Re-map form field names before sending, comma-separated `original=target` pairs (for Formalicious generic field names) | _(empty)_ |
+| `formit-webhook.webhook_field_mapping` | Re-map form field names before sending, comma-separated `original=target` pairs (for Formalicious generic field names) | _(empty)_ |
 ```
 
 Add a row to the Properties table (after the `webhookVars` row):
@@ -382,7 +382,7 @@ meaningful names before sending. Mapped keys are renamed and the originals
 removed; unmapped fields pass through unchanged. If a mapped target name
 collides with an existing field, the mapped value wins.
 
-Set the `formit-webhook.field_mapping` system setting to
+Set the `formit-webhook.webhook_field_mapping` system setting to
 `field_1=email,field_2=name`, or per form:
 
 ```php

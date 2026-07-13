@@ -23,7 +23,7 @@ Install via the MODX package manager or GPM.
 | `formit-webhook.webhook_bearer_token` | Default Bearer token for authentication | _(empty)_ |
 | `formit-webhook.webhook_method` | Default HTTP method | `POST` |
 | `formit-webhook.webhook_static_data` | Default static key=value pairs, comma-separated | _(empty)_ |
-| `formit-webhook.field_mapping` | Re-map form field names before sending, comma-separated `original=target` pairs (for Formalicious generic field names) | _(empty)_ |
+| `formit-webhook.webhook_field_mapping` | Re-map form field names before sending, comma-separated `original=target` pairs (for Formalicious generic field names) | _(empty)_ |
 
 ## Properties
 
@@ -84,7 +84,7 @@ meaningful names before sending. Mapped keys are renamed and the originals
 removed; unmapped fields pass through unchanged. If a mapped target name
 collides with an existing field, the mapped value wins.
 
-Set the `formit-webhook.field_mapping` system setting to
+Set the `formit-webhook.webhook_field_mapping` system setting to
 `field_1=email,field_2=name`, or per form:
 
 ```php
