@@ -63,6 +63,12 @@ class FormitWebhook
         // Gather form data
         $data = $hook->getValues();
 
+        // Re-map generic field names (e.g. Formalicious field_1) to meaningful
+        // names before filtering, so webhookFields and the endpoint see the
+        // mapped names.
+        $fieldMap = $this->parseVars($this->getOption('webhookFieldMapping', $scriptProperties, 'field_mapping'));
+        $data = $this->applyFieldMapping($data, $fieldMap);
+
         // Filter fields if specified
         if (!empty($fields)) {
             $fieldList = array_map('trim', explode(',', $fields));
