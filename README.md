@@ -23,6 +23,7 @@ Install via the MODX package manager or GPM.
 | `formit-webhook.webhook_bearer_token` | Default Bearer token for authentication | _(empty)_ |
 | `formit-webhook.webhook_method` | Default HTTP method | `POST` |
 | `formit-webhook.webhook_static_data` | Default static key=value pairs, comma-separated | _(empty)_ |
+| `formit-webhook.webhook_field_mapping` | Re-map form field names before sending, comma-separated `original=target` pairs (for Formalicious generic field names) | _(empty)_ |
 
 ## Properties
 
@@ -36,6 +37,7 @@ Properties are set as scriptProperties on the FormIt call. They override the cor
 | `webhookFormat` | Data format: `url`, `form`, or `json` | `json` |
 | `webhookFields` | Comma-separated list of form fields to include. Empty = all fields | _(all)_ |
 | `webhookVars` | Static key=value pairs, comma-separated | System setting |
+| `webhookFieldMapping` | Comma-separated `original=target` field-name pairs. Overrides the `field_mapping` system setting | System setting |
 
 ### Data Formats
 
@@ -72,6 +74,25 @@ For `GET` requests, data is always appended as query string parameters regardles
     &token=`your-bearer-token`
     &webhookFields=`name,email,phone`
     &webhookVars=`source=website,form_id=contact`
+]]
+```
+
+### Formalicious: remap generic field names
+
+Formalicious names fields generically (`field_1`, `field_2`, ...). Map them to
+meaningful names before sending. Mapped keys are renamed and the originals
+removed; unmapped fields pass through unchanged. If a mapped target name
+collides with an existing field, the mapped value wins.
+
+Set the `formit-webhook.webhook_field_mapping` system setting to
+`field_1=email,field_2=name`, or per form:
+
+```php
+[[!FormIt?
+    &hooks=`FormitWebhook,redirect`
+    &redirectTo=`[[++page_thanks]]`
+    &url=`https://api.example.com/leads`
+    &webhookFieldMapping=`field_1=email,field_2=name`
 ]]
 ```
 

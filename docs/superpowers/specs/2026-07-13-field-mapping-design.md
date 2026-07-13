@@ -29,7 +29,7 @@ unchanged (fully backward-compatible).
 
 | Key | Type | Area | Default |
 |-----|------|------|---------|
-| `formit-webhook.field_mapping` | `textfield` | `default` | _(empty)_ |
+| `formit-webhook.webhook_field_mapping` | `textfield` | `default` | _(empty)_ |
 
 Value is a comma-separated list of `original=target` pairs, identical in format
 to the existing `webhook_static_data` setting:
@@ -44,7 +44,7 @@ field_1=email,field_2=name,field_3=message
 |----------|-------------|---------|
 | `webhookFieldMapping` | Comma-separated `original=target` pairs. Overrides the system setting per FormIt call. | System setting |
 
-Resolved through the existing `getOption('webhookFieldMapping', $scriptProperties, 'field_mapping')`
+Resolved through the existing `getOption('webhookFieldMapping', $scriptProperties, 'webhook_field_mapping')`
 helper — the same fallback pattern used by `url`, `token`, and `method`.
 
 ## Parsing
@@ -103,10 +103,10 @@ receiving endpoint, and in their mental model. No mapping configured means step
 | File | Change |
 |------|--------|
 | `core/components/formitwebhook/model/formitwebhook/formitwebhook.class.php` | Read mapping option in `submitForm()`, apply it before filtering; add `applyFieldMapping()` method |
-| `_build/gpm.yaml` | Add `field_mapping` system setting entry |
-| `core/components/formitwebhook/lexicon/en/default.inc.php` | Add `setting_formit-webhook.field_mapping` label + `_desc` |
+| `_build/gpm.yaml` | Add `webhook_field_mapping` system setting entry |
+| `core/components/formitwebhook/lexicon/en/default.inc.php` | Add `setting_formit-webhook.webhook_field_mapping` label + `_desc` |
 | `core/components/formitwebhook/lexicon/nl/default.inc.php` | Add Dutch label + `_desc` |
-| `README.md` | Add `field_mapping` to settings table, `webhookFieldMapping` to properties table, add a Formalicious usage example |
+| `README.md` | Add `webhook_field_mapping` to settings table, `webhookFieldMapping` to properties table, add a Formalicious usage example |
 
 No new files, no schema changes, no dependency changes.
 
