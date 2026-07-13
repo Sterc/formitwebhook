@@ -1,5 +1,5 @@
 name: formitwebhook
-version: 1.0.0-pl
+version: 1.1.0-pl
 lowCaseName: formitwebhook
 namespace: formit-webhook
 description: FormIt Webhook - send your form data to any URL
