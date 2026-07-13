@@ -6,7 +6,7 @@ class FormitWebhook
     public $modx;
 
     /** @var string */
-    protected $namespace = 'formit-webhook';
+    protected $namespace = 'formitwebhook';
 
     /** @var array */
     protected $allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];

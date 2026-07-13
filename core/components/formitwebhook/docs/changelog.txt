@@ -1,5 +1,9 @@
 Changelog for FormIt Webhook
 
+FormIt Webhook 1.1.0-pl
+==============
+- Add field mapping: remap generic form field names (e.g. Formalicious field_1, field_2) to meaningful names before sending, via the webhook_field_mapping system setting or the webhookFieldMapping property (comma-separated original=target pairs)
+
 FormIt Webhook 1.0.0-pl
 ==============
 - Initial release

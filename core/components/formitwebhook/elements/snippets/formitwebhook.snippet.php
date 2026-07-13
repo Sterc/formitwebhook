@@ -1,6 +1,6 @@
 <?php
 $formitWebhook = $modx->getService(
-    'formit-webhook',
+    'formitwebhook',
     'FormitWebhook',
     $modx->getOption(
         'formitwebhook.core_path',
@@ -13,6 +13,6 @@ if (!($formitWebhook instanceof FormitWebhook)) {
     return;
 }
 
-$modx->lexicon->load('formit-webhook:default');
+$modx->lexicon->load('formitwebhook:default');
 
 return $formitWebhook->submitForm($hook, $scriptProperties);
