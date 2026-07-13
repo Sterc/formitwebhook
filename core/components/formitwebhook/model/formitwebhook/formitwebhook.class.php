@@ -128,6 +128,27 @@ class FormitWebhook
     }
 
     /**
+     * Rename data keys according to a mapping of original => target names.
+     * Keys present in the map are renamed and the original key removed; keys
+     * not in the map are left untouched. An empty map returns data unchanged.
+     *
+     * @param array $data
+     * @param array $map original field name => target field name
+     * @return array
+     */
+    protected function applyFieldMapping(array $data, array $map)
+    {
+        foreach ($map as $original => $target) {
+            if (array_key_exists($original, $data)) {
+                $data[$target] = $data[$original];
+                unset($data[$original]);
+            }
+        }
+
+        return $data;
+    }
+
+    /**
      * Build and send the cURL request.
      *
      * @param fiHooks $hook
